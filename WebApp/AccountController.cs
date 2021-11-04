@@ -19,7 +19,8 @@ namespace WebApp
         [HttpGet]
         public ValueTask<Account> Get()
         {
-            return _accountService.LoadOrCreateAsync(null /* TODO 3: Get user id from cookie */);
+            return _accountService.LoadOrCreateAsync(Request.Cookies["ExternalId"] /* TODO 3: Get user id from cookie */);
+            //Resolved
         }
 
         //TODO 5: Endpoint should works only for users with "Admin" Role
