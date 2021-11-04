@@ -28,7 +28,7 @@ namespace WebApp
         [HttpGet("{id}")]
         public Account GetByInternalId([FromRoute] int id)
         {
-            var curAccount = _accountService.LoadOrCreateAsync(Request.Cookies["ExternalId"]).Result;
+            var curAccount = _accountService.GetFromCache(int.Parse(Request.Cookies["ExternalId"]));
             if (curAccount.Role == "Admin")
             {
                 return _accountService.GetFromCache(id);
